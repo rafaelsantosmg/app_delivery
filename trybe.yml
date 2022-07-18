@@ -3,7 +3,6 @@ ignore_files:
   - back-end/.eslintignore
   - back-end/.eslintrc.json
   - front-end/.eslintignore
-  - front-end/.eslintrc.json
   - front-end/.stylelintignore
   - front-end/.stylelintrc.json
   - scripts/
