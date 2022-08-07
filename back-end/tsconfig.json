@@ -1,15 +1,14 @@
 {
    "compilerOptions": {
-      "lib": [
-         "es5",
-         "es6"
-      ],
-      "target": "es5",
-      "module": "commonjs",
-      "moduleResolution": "node",
-      "outDir": "./build",
-      "emitDecoratorMetadata": true,
-      "experimentalDecorators": true,
-      "sourceMap": true
+     "target": "ES2022",
+     "lib": ["ES2021"],
+     "module": "ES2022",
+     "rootDir": "./src" ,
+     "outDir": "./dist",
+     "moduleResolution": "Node",
+     "strict": true,
+     "esModuleInterop": true,
+     "forceConsistentCasingInFileNames": true,
+     "skipLibCheck": true
    }
-}
+ }

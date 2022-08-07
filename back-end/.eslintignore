@@ -3,3 +3,6 @@ seeders
 /src/tests/
 jest.config.js
 /src/coverage
+/*.js’
+node_modules
+dist

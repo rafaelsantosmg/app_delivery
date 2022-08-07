@@ -1,9 +1,16 @@
-import app from './app'
-import 'dotenv/config'
-import {Request, Response} from 'express'
+import { Request, Response } from 'express';
+import 'dotenv/config';
 
-const port = process.env.API_PORT || 3333
+import app from './app';
 
-app.get('/', (_req: Request, res: Response) => res.send('Hello World!'))
+const PORT = process.env.API_PORT || 3333;
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.get('/', (_request: Request, response: Response) =>
+  response.json({
+    message: 'Meu server Express, Typescript e ESLint!',
+  })
+);
+
+app.listen(PORT, () => {
+  console.log('Back-end started in 3333 port!');
+});
