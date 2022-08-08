@@ -1,4 +1,4 @@
-import Users from '../database/entities/User';
+import Users from '../../database/entities/User';
 
 export type UserRequest = {
   name: string;
