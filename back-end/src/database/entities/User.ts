@@ -1,19 +1,19 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('users')
 export default class Users {
-  @PrimaryColumn()
-  id!: number;
+  @PrimaryGeneratedColumn('increment')
+  id: number;
 
   @Column()
-  name!: string;
+  name: string;
 
   @Column()
-  email!: string;
+  email: string;
 
   @Column()
-  password!: string;
+  password: string;
 
   @Column()
-  role!: string;
+  role: string;
 }

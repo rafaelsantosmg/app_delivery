@@ -1,13 +1,13 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('products')
 export default class Products {
-  @PrimaryColumn()
-  id!: number;
+  @PrimaryGeneratedColumn('increment')
+  id: number;
 
   @Column()
-  price!: number;
+  price: number;
 
-  @Column('url_image')
-  urlImage!: string;
+  @Column({ name: 'url_image' })
+  urlImage: string;
 }

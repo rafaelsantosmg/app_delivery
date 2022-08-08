@@ -1,4 +1,11 @@
-import * as express  from 'express'
-const app = express()
+import 'reflect-metadata';
+import express from 'express';
+import router from '../Router';
+import '../database';
 
-export default app
+const app = express();
+
+app.use(express.json());
+app.use(router);
+
+export default app;

@@ -2,37 +2,37 @@ import {
   Entity,
   Column,
   CreateDateColumn,
-  PrimaryColumn,
   JoinColumn,
   ManyToOne,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 import User from './User';
 
 @Entity('sales')
 export default class Sales {
-  @PrimaryColumn()
-  id!: number;
+  @PrimaryGeneratedColumn('increment')
+  id: number;
 
-  @Column('user_id')
-  userId!: number;
+  @Column({ name: 'user_id' })
+  userId: number;
 
-  @Column('seller_id')
-  sellerId!: number;
+  @Column({ name: 'seller_id' })
+  seller_id: number;
 
-  @Column('total_price')
-  totalPrice!: number;
+  @Column({ name: 'total_price' })
+  totalPrice: number;
 
-  @Column('delivery_address')
-  deliveryAddress!: string;
+  @Column({ name: 'delivery_address' })
+  deliveryAddress: string;
 
-  @Column('delivery_number')
-  deliveryNumber!: string;
+  @Column({ name: 'delivery_number' })
+  deliveryNumber: string;
 
-  @CreateDateColumn('sale_date')
-  saleDate!: Date;
+  @CreateDateColumn({ name: 'sale_date' })
+  saleDate: Date;
 
   @Column()
-  status!: string;
+  status: string;
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'userId' })

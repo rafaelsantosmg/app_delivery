@@ -4,20 +4,20 @@ import Product from './Product';
 
 @Entity('sales')
 export default class SalesProducts {
-  @PrimaryColumn('sale_id')
-  saleId!: number;
+  @PrimaryColumn({ name: 'sale_id' })
+  saleId: number;
 
-  @PrimaryColumn('product_id')
-  productId!: number;
+  @PrimaryColumn({ name: 'product_id' })
+  productId: number;
 
   @Column()
-  quantity!: number;
+  quantity: number;
 
   @ManyToMany((type) => Sale)
   @JoinTable({ name: 'saleId' })
-  sale!: Sale[];
+  sale: Sale[];
 
   @ManyToMany((type) => Product)
   @JoinTable({ name: 'productId' })
-  product!: Product[];
+  product: Product[];
 }
