@@ -1,8 +1,8 @@
 import { getRepository } from 'typeorm';
 import Users from '../database/entities/User';
-import { IUser, UserRequest } from '../interfaces/User.interface';
+import { IUser, UserRequest } from './interfaces/User.interface';
 
-export default class UsersSerivce implements IUser {
+export default class UsersService implements IUser {
   async createRegister(body: UserRequest): Promise<Users> {
     const { email } = body;
 

@@ -12,5 +12,5 @@ app.get('/', (_request: Request, response: Response) =>
 );
 
 app.listen(PORT, () => {
-  console.log('Back-end started in 3333 port!');
+  console.log(`Back-end started in port ${PORT}!`);
 });
