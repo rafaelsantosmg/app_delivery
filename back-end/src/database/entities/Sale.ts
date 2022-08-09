@@ -15,12 +15,6 @@ export default class Sales {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
-  // @Column({ name: 'user_id' })
-  // userId: number;
-
-  // @Column({ name: 'seller_id' })
-  // seller_id: number;
-
   @Column({ name: 'total_price' })
   totalPrice: number;
 

@@ -12,12 +12,4 @@ export default class SalesProducts {
 
   @Column()
   quantity: number;
-
-  // @ManyToMany(() => Sale, sale => sale.id)
-  // @JoinTable({ name: 'salesProducts' })
-  // sale: Sale[];
-
-  // @ManyToMany(() => Product, product => product.id)
-  // @JoinTable({ name: 'products' })
-  // product: Product[];
 }

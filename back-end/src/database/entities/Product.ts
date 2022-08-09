@@ -31,8 +31,4 @@ export default class Products {
     },
   })
   sale: Sales[];
-
-  // @ManyToMany(() => Product, product => product.id)
-  // @JoinTable({ name: 'products' })
-  // product: Product[];
 }
