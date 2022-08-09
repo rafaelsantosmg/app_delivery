@@ -7,11 +7,11 @@ import {
   PrimaryGeneratedColumn,
   ManyToMany,
 } from 'typeorm';
-import Products from './Product';
-import User from './User';
+import Product from './Product';
+import Register from './Register';
 
 @Entity('sales')
-export default class Sales {
+export default class Sale {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
@@ -30,10 +30,10 @@ export default class Sales {
   @Column()
   status: string;
 
-  @ManyToOne(() => User, (user) => user.sales)
-  @JoinColumn({ name: 'user_id' })
-  user: User;
+  @ManyToOne(() => Register, (register) => register.sales)
+  @JoinColumn({ name: 'register_id' })
+  register: Register;
 
-  @ManyToMany(() => Products, (product) => product.sale)
-  products: Products[];
+  @ManyToMany(() => Product, (product) => product.sale)
+  products: Product[];
 }

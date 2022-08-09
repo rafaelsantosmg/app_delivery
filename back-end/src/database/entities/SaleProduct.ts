@@ -1,6 +1,4 @@
-import { Entity, Column, PrimaryColumn, JoinTable, ManyToMany } from 'typeorm';
-import Sale from './Sale';
-import Product from './Product';
+import { Entity, Column, PrimaryColumn } from 'typeorm';
 
 @Entity('salesProducts')
 export default class SalesProducts {

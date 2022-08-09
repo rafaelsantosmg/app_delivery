@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import UsersService from '../services/User.service';
-import { IUserController } from './interfaces/User.interface';
+import RegisterService from '../services/Register.service';
+import { IRegisterController } from './interfaces/Register.controller.interface';
 
-export class UserController implements IUserController {
-  private _service = new UsersService();
+export class RegisterController implements IRegisterController {
+  private _service = new RegisterService();
 
   async createRegister(req: Request, res: Response): Promise<Response> {
     try {
@@ -11,13 +11,14 @@ export class UserController implements IUserController {
 
       return res.status(201).json(user);
     } catch (error) {
+      console.log(error);
       return res.status(400).json({ message: 'Error' });
     }
   }
 
-  async findAllUsers(req: Request, res: Response): Promise<Response> {
+  async findAllRegisters(req: Request, res: Response): Promise<Response> {
     try {
-      const users = await this._service.findAllUsers();
+      const users = await this._service.findAllRegisters();
 
       return res.status(200).json(users);
     } catch (error) {
@@ -25,20 +26,10 @@ export class UserController implements IUserController {
     }
   }
 
-  async findAllSeller(req: Request, res: Response): Promise<Response> {
-    try {
-      const sellers = await this._service.findAllSeller();
-
-      return res.status(200).json(sellers);
-    } catch (error) {
-      return res.status(400).json({ message: 'Error' });
-    }
-  }
-
-  async findById(req: Request, res: Response): Promise<Response> {
+  async findByRegisterId(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
-      const user = await this._service.findById(id);
+      const user = await this._service.findByRegisterId(Number(id));
 
       return res.status(200).json(user);
     } catch (error) {
@@ -46,11 +37,11 @@ export class UserController implements IUserController {
     }
   }
 
-  async findBySeller(req: Request, res: Response): Promise<Response> {
+  async findByRegisterRole(req: Request, res: Response): Promise<Response> {
     try {
-      const { id } = req.params;
+      const { role } = req.body;
 
-      const seller = await this._service.findBySeller(id);
+      const seller = await this._service.findByRegisterRole(role);
 
       return res.status(200).json(seller);
     } catch (error) {
@@ -61,7 +52,7 @@ export class UserController implements IUserController {
   async deleteRegister(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
-      const result = await this._service.deleteRegister(id);
+      const result = await this._service.deleteRegister(Number(id));
       return res.status(204).json(result);
     } catch (error) {
       return res.status(400).json({ message: 'Error' });
