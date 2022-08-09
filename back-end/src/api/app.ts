@@ -1,7 +1,6 @@
 import 'reflect-metadata';
 import express from 'express';
 import router from '../Router';
-import '../database';
 
 const app = express();
 

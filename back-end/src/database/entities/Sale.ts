@@ -5,19 +5,15 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
+  ManyToMany,
 } from 'typeorm';
+import Products from './Product';
 import User from './User';
 
 @Entity('sales')
 export default class Sales {
   @PrimaryGeneratedColumn('increment')
   id: number;
-
-  @Column({ name: 'user_id' })
-  userId: number;
-
-  @Column({ name: 'seller_id' })
-  seller_id: number;
 
   @Column({ name: 'total_price' })
   totalPrice: number;
@@ -34,8 +30,10 @@ export default class Sales {
   @Column()
   status: string;
 
-  @ManyToOne(() => User)
-  @JoinColumn({ name: 'userId' })
-  @JoinColumn({ name: 'sellerId' })
-  user!: User;
+  @ManyToOne(() => User, (user) => user.sales)
+  @JoinColumn({ name: 'user_id' })
+  user: User;
+
+  @ManyToMany(() => Products, (product) => product.sale)
+  products: Products[];
 }

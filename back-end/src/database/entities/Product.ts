@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToMany,
+  JoinTable,
+} from 'typeorm';
+import Sales from './Sale';
 
 @Entity('products')
 export default class Products {
@@ -10,4 +17,18 @@ export default class Products {
 
   @Column({ name: 'url_image' })
   urlImage: string;
+
+  @ManyToMany(() => Sales, (sale) => sale.products)
+  @JoinTable({
+    name: 'salesProducts',
+    joinColumn: {
+      name: 'sale_id',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'product_id',
+      referencedColumnName: 'id',
+    },
+  })
+  sale: Sales[];
 }

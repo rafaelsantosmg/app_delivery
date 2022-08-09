@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryColumn, JoinTable, ManyToMany } from 'typeorm';
 import Sale from './Sale';
 import Product from './Product';
 
-@Entity('sales')
+@Entity('salesProducts')
 export default class SalesProducts {
   @PrimaryColumn({ name: 'sale_id' })
   saleId: number;
@@ -12,12 +12,4 @@ export default class SalesProducts {
 
   @Column()
   quantity: number;
-
-  @ManyToMany((type) => Sale)
-  @JoinTable({ name: 'saleId' })
-  sale: Sale[];
-
-  @ManyToMany((type) => Product)
-  @JoinTable({ name: 'productId' })
-  product: Product[];
 }
