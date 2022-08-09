@@ -1,8 +1,8 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 import Sales from './Sale';
 
-@Entity('users')
-export default class Users {
+@Entity('registers')
+export default class Register {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
@@ -18,6 +18,6 @@ export default class Users {
   @Column()
   role: string;
 
-  @OneToMany(() => Sales, (sale) => sale.user)
+  @OneToMany(() => Sales, (sale) => sale.register)
   sales: Sales;
 }

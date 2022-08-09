@@ -5,10 +5,10 @@ import {
   ManyToMany,
   JoinTable,
 } from 'typeorm';
-import Sales from './Sale';
+import Sale from './Sale';
 
 @Entity('products')
-export default class Products {
+export default class Product {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
@@ -18,7 +18,7 @@ export default class Products {
   @Column({ name: 'url_image' })
   urlImage: string;
 
-  @ManyToMany(() => Sales, (sale) => sale.products)
+  @ManyToMany(() => Sale, (sale) => sale.products)
   @JoinTable({
     name: 'salesProducts',
     joinColumn: {
@@ -30,5 +30,5 @@ export default class Products {
       referencedColumnName: 'id',
     },
   })
-  sale: Sales[];
+  sale: Sale[];
 }
