@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import Sales from './Sale';
 
 @Entity('users')
 export default class Users {
@@ -16,4 +17,7 @@ export default class Users {
 
   @Column()
   role: string;
+
+  @OneToMany(() => Sales, (sale) => sale.user)
+  sales: Sales;
 }
