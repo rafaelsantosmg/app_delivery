@@ -11,7 +11,6 @@ export class RegisterController implements IRegisterController {
 
       return res.status(201).json(user);
     } catch (error) {
-      console.log(error);
       return res.status(400).json({ message: 'Error' });
     }
   }
@@ -39,19 +38,20 @@ export class RegisterController implements IRegisterController {
 
   async findByRegisterRole(req: Request, res: Response): Promise<Response> {
     try {
-      const { role } = req.body;
+      const role = req.query.role;
 
-      const seller = await this._service.findByRegisterRole(role);
+      const seller = await this._service.findByRegisterRole(role as string);
 
       return res.status(200).json(seller);
     } catch (error) {
-      return res.status(400).json({ message: 'Error' });
+      return res.status(400).json({ message: 'Error s' });
     }
   }
 
   async deleteRegister(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;
+
       const result = await this._service.deleteRegister(Number(id));
       return res.status(204).json(result);
     } catch (error) {
