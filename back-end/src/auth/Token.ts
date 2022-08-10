@@ -20,6 +20,8 @@ class Token {
   };
 
   createToken(register: RegisterTypeToken) {
+    console.log(register);
+
     const token = sign({ register }, this._privateKey, this._signOptions);
 
     return token;

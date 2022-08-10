@@ -4,7 +4,7 @@ import Register from '../database/entities/Register';
 import { registerRepository } from '../database/repositories/Register.repository';
 import {
   IRegister,
-  UserRequest,
+  RegisterRequest,
 } from './interfaces/Register.service.interface';
 
 interface INewRegister extends Register {
@@ -13,7 +13,7 @@ interface INewRegister extends Register {
 export default class RegisterService implements IRegister {
   private _createToken = new Token();
 
-  async createRegister(body: UserRequest): Promise<INewRegister> {
+  async createRegister(body: RegisterRequest): Promise<INewRegister> {
     if (await registerRepository.findOne({ where: { email: body.email } })) {
       throw new Error('User already exists');
     }
@@ -26,6 +26,7 @@ export default class RegisterService implements IRegister {
       password: pwdHash,
       role: body.role,
     });
+    await registerRepository.save(register);
 
     const { id, name, email, role, password, sales } = register;
 
@@ -35,7 +36,6 @@ export default class RegisterService implements IRegister {
       email,
       role,
     });
-    await registerRepository.save(register);
 
     return { id, name, email, role, password, sales, token };
   }
