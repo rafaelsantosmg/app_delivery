@@ -1,4 +1,4 @@
-import Users from '../../database/entities/Register';
+import Register from '../../database/entities/Register';
 
 export type UserRequest = {
   name: string;
@@ -8,9 +8,9 @@ export type UserRequest = {
 };
 
 export interface IRegister {
-  createRegister(body: UserRequest): Promise<Users>;
-  findAllRegisters(): Promise<Users[]>;
-  findByRegisterId(id: number): Promise<Users | null>;
-  findByRegisterRole(role: string): Promise<Users | null>;
+  createRegister(body: UserRequest): Promise<Register>;
+  findAllRegisters(): Promise<Register[]>;
+  findByRegisterId(id: number): Promise<Register | null>;
+  findByRegisterRole(role: string): Promise<Register | null>;
   deleteRegister(id: number): Promise<string | null>;
 }
