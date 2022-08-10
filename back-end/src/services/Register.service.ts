@@ -1,23 +1,43 @@
+import { hash } from 'bcryptjs';
+import Token from '../auth/Token';
 import Register from '../database/entities/Register';
 import { registerRepository } from '../database/repositories/Register.repository';
 import {
   IRegister,
-  UserRequest,
+  RegisterRequest,
 } from './interfaces/Register.service.interface';
 
+interface INewRegister extends Register {
+  token: string;
+}
 export default class RegisterService implements IRegister {
-  async createRegister(body: UserRequest): Promise<Register> {
-    const { email } = body;
+  private _createToken = new Token();
 
-    if (await registerRepository.findOne({ where: { email } })) {
+  async createRegister(body: RegisterRequest): Promise<INewRegister> {
+    if (await registerRepository.findOne({ where: { email: body.email } })) {
       throw new Error('User already exists');
     }
 
-    const register = registerRepository.create(body);
+    const pwdHash = await hash(body.password, 10);
 
+    const register = registerRepository.create({
+      name: body.name,
+      email: body.email,
+      password: pwdHash,
+      role: body.role,
+    });
     await registerRepository.save(register);
 
-    return register;
+    const { id, name, email, role, password, sales } = register;
+
+    const token = this._createToken.createToken({
+      id,
+      name,
+      email,
+      role,
+    });
+
+    return { id, name, email, role, password, sales, token };
   }
 
   async findAllRegisters(): Promise<Register[]> {

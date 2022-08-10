@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@hapi/boom": "9.1.4",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.1",
     "cors": "2.8.5",
     "dotenv": "16.0.0",
@@ -32,7 +33,9 @@
     "typeorm": "^0.3.7"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/express": "^4.17.13",
+    "@types/jsonwebtoken": "^8.5.8",
     "@types/node": "^17.0.40",
     "@typescript-eslint/eslint-plugin": "^5.27.0",
     "@typescript-eslint/parser": "^5.27.0",
@@ -42,7 +45,9 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "i": "^0.3.7",
     "mocha": "9.2.2",
+    "npm": "^8.16.0",
     "nyc": "15.1.0",
     "prettier": "^2.6.2",
     "sinon": "13.0.1",
