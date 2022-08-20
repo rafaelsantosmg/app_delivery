@@ -9,7 +9,7 @@ export type RegisterRequest = {
 };
 
 export interface IRegister {
-  createRegister(body: RegisterRequest): Promise<Register>;
+  createRegister(body: RegisterRequest): Promise<string>;
   findAllRegisters(): Promise<Register[]>;
   findByRegisterId(id: number): Promise<Register | null>;
   findByRegisterRole(role: string): Promise<Register | null>;
