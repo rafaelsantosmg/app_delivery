@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { Request, Response } from 'express';
 
-import { AppDataSource } from '../data-source.ts';
+import { AppDataSource } from '../data-source';
 import app from './app';
 
 const PORT = process.env.API_PORT || 3333;

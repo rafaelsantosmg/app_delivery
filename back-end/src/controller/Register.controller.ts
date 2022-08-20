@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import AppError from '../errors/AppError';
 import RegisterService from '../services/Register.service';
 import { IRegisterController } from './interfaces/Register.controller.interface';
 
@@ -7,13 +8,12 @@ export class RegisterController implements IRegisterController {
 
   async createRegister(req: Request, res: Response): Promise<Response> {
     try {
-      const user = await this._service.createRegister(req.body);
+      const register = await this._service.createRegister(req.body);
 
-      return res.status(201).json(user);
+      return res.status(201).json({ message: register });
     } catch (error) {
-      console.log(error);
-
-      return res.status(400).json({ message: 'Error' });
+      const { status, message } = error as AppError;
+      return res.status(status).json({ message });
     }
   }
 
@@ -23,7 +23,8 @@ export class RegisterController implements IRegisterController {
 
       return res.status(200).json(users);
     } catch (error) {
-      return res.status(400).json({ message: 'Error' });
+      const { status, message } = error as AppError;
+      return res.status(status).json({ message });
     }
   }
 
@@ -34,7 +35,8 @@ export class RegisterController implements IRegisterController {
 
       return res.status(200).json(user);
     } catch (error) {
-      return res.status(400).json({ message: 'Error' });
+      const { status, message } = error as AppError;
+      return res.status(status).json({ message });
     }
   }
 
@@ -46,7 +48,8 @@ export class RegisterController implements IRegisterController {
 
       return res.status(200).json(seller);
     } catch (error) {
-      return res.status(400).json({ message: 'Error s' });
+      const { status, message } = error as AppError;
+      return res.status(status).json({ message });
     }
   }
 
@@ -55,9 +58,11 @@ export class RegisterController implements IRegisterController {
       const { id } = req.params;
 
       const result = await this._service.deleteRegister(Number(id));
-      return res.status(204).json(result);
+      console.log(result);
+      return res.status(204).json({ message: result });
     } catch (error) {
-      return res.status(400).json({ message: 'Error' });
+      const { status, message } = error as AppError;
+      return res.status(status).json({ message });
     }
   }
 }

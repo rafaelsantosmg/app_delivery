@@ -1,21 +1,6 @@
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
+import { IToken, RequestWithUserRole } from './interfaces/Middleware.interface';
 import Token from '../auth/Token';
-
-interface IToken {
-  id: number;
-  name: string;
-  email: string;
-  role: string;
-}
-
-interface RequestWithUserRole extends Request {
-  data?: {
-    id: number;
-    name: string;
-    role: string;
-    email: string;
-  };
-}
 
 class AuthMiddleware {
   private _decodedToken = new Token();
